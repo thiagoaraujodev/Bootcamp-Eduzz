@@ -34,7 +34,7 @@ yarn install // Vai instalar as dependencias
 yarn start // Iniciará a nossa API
 ```
 
-Seu worker rodará, e se quiser visualizar o painel do RabbitMQ com as filas, acesse `http://localhost:15673` e utilize as credenciais `username: guest` e `password: guest`. 
+Seu worker rodará, e se quiser visualizar o painel do RabbitMQ com as filas, acesse `http://localhost:15672` e utilize as credenciais `username: guest` e `password: guest`. 
 
 
 # Dúvidas?

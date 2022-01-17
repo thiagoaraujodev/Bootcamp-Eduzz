@@ -18,7 +18,7 @@ const ReduxExample = () => {
 
   const onLogin = useCallback(async () => {
     setLoading(true);
-    await authService.login('teste@eduzz.com', 'senha123');
+    await authService.login('thiago72araujo@gmail.com', '123456');
     setLoading(false);
   }, []);
 
