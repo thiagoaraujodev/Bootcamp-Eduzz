@@ -12,21 +12,25 @@ import Card from './Card';
 import { formatMoney } from '@/formatters/money';
 import campaignService from '@/services/campaign';
 
-const CampaignsCards: React.FC<IStyledProp> = ({ className }) => {
+interface IProps extends IStyledProp {
+  updateRefresh: boolean;
+}
+
+const CampaignsCards: React.FC<IProps> = ({ updateRefresh, className }) => {
   const [roi, , roiLoading, roiRefresh] = usePromiseRefresh(async () => {
     const data = await campaignService.graphRoi();
     return (Number.isNaN(Number(data)) ? 0 : Number(data) * 100).toFixed(2) + ' %';
-  }, []);
+  }, [updateRefresh]);
 
   const [investment, , investmentLoading, investmentRefresh] = usePromiseRefresh(async () => {
     const data = await campaignService.graphInvestment();
     return formatMoney(data);
-  }, []);
+  }, [updateRefresh]);
 
   const [revenues, , revenuesLoading, revenuesRefresh] = usePromiseRefresh(async () => {
     const data = await campaignService.graphRevenues();
     return formatMoney(data);
-  }, []);
+  }, [updateRefresh]);
 
   return (
     <div className={className}>

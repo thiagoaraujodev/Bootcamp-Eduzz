@@ -19,6 +19,7 @@ import { ICampaign } from '@/interfaces/models/campaign';
 import campaignService from '@/services/campaign';
 
 const CampaignsPage: React.FC<IStyledProp> = ({ className }) => {
+  const [updateRefresh, setUpdateRefresh] = useState(false);
   const [formOpened, setFormOpened] = useState(false);
   const [current, setCurrent] = useState<ICampaign>();
 
@@ -38,6 +39,7 @@ const CampaignsPage: React.FC<IStyledProp> = ({ className }) => {
   const formCallback = useCallback(() => {
     setFormOpened(false);
     refresh();
+    setUpdateRefresh(true);
   }, [refresh]);
 
   const formCancel = useCallback(() => setFormOpened(false), []);
@@ -69,7 +71,8 @@ const CampaignsPage: React.FC<IStyledProp> = ({ className }) => {
         </li>
       </ul> */}
 
-      <CampaignsCards />
+      <CampaignsCards updateRefresh={updateRefresh} />
+
       <CampaignForm opened={formOpened} data={current} onComplete={formCallback} onCancel={formCancel} />
 
       <div className='header'>
